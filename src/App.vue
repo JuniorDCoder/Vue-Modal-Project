@@ -5,14 +5,21 @@
     <Modal theme="sale" @close="ToggleClick">
       <template v-slot:links>
         <a href="">SignUp Now</a>
-        <br>
+        
         <a href="">More Info</a>
       </template>
       <h1>Ninga Giveaway!</h1>
       <p>Grab your ninga swag for half the actual price!</p>
     </Modal>
   </div>
+  <div v-if="isClicked2">
+    <Modal @close="ToggleClick2">
+      <h1>Sign Up to Newsletter!</h1>
+      <p>For Updates and Promo Codes!</p>
+    </Modal>
+  </div>
   <button @click="ToggleClick">Open Modal</button> 
+  <button @click="ToggleClick2">Open Modal Two</button> 
 </template>
 
 <script>
@@ -27,6 +34,7 @@ export default {
     return {
       title: "My First Vue App :)",
       isClicked: false,
+      isClicked2: false,
       header: "50% off Everything!",
       text: "Grab Your Ninga Sweater for half the price!"
     }
@@ -34,6 +42,9 @@ export default {
   methods: {
     ToggleClick(){
       this.isClicked = !this.isClicked
+    },
+    ToggleClick2(){
+      this.isClicked2 = !this.isClicked2
     }
   }
 }
