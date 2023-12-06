@@ -1,9 +1,11 @@
 <template>
-    <div class="backdrop">
-        <div class="modal">
-            <h1>Modal Title</h1>
-            <p>Modal Content</p>
-            <button @click="ToggleClick">Cancel</button>
+    <div class="backdrop" @click.self="closeModal">
+        <div class="modal" :class="{sale: theme == 'sale'}">
+            <slot></slot>
+            <div class="actions">
+                <slot name="links">
+                </slot>
+            </div>
         </div>
     </div>
 </template>
@@ -11,16 +13,12 @@
 <script>
 export default{
     props: {
-        isClicked: Boolean,
-        ToggleClick: {
-            Function, 
-            required: true
-        }
+        theme: String,
     },
     methods: {
-        hideModal(){
-            this.isClicked = !this.isClicked
-        }
+        closeModal(){
+            this.$emit('close')
+        },
     }
 }
 </script>
@@ -44,5 +42,12 @@ export default{
         color: #03cfb4;
         border: none;
         padding: 0;
+    }
+    .modal.sale{
+        background: crimson;
+        color: white;
+    }
+    .modal.sale h1{
+        color: white;
     }
 </style>

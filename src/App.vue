@@ -1,8 +1,18 @@
 <template>
   <h1>{{ title }}</h1>
-  <br>
-  <button @click="ToggleClick">Click Me</button>
-  <Modal v-if="isClicked" :isClicked="isClicked" :ToggleClick="ToggleClick"/>
+  <p>Welcome ...</p>
+  <div v-if="isClicked">
+    <Modal theme="sale" @close="ToggleClick">
+      <template v-slot:links>
+        <a href="">SignUp Now</a>
+        <br>
+        <a href="">More Info</a>
+      </template>
+      <h1>Ninga Giveaway!</h1>
+      <p>Grab your ninga swag for half the actual price!</p>
+    </Modal>
+  </div>
+  <button @click="ToggleClick">Open Modal</button> 
 </template>
 
 <script>
@@ -17,6 +27,8 @@ export default {
     return {
       title: "My First Vue App :)",
       isClicked: false,
+      header: "50% off Everything!",
+      text: "Grab Your Ninga Sweater for half the price!"
     }
   },
   methods: {
